@@ -4,7 +4,9 @@
 
 <h1 class="title">Edit Project</h1>
 
-    <form action="">
+    <form method="POST" action="/projects/{{ $project -> id }}" style="margin-bottom: 1em;">
+        {{ method_field('PATCH') }}
+        {{ csrf_field() }}
 
         <div class="field">
 
@@ -14,7 +16,7 @@
 
             <div class="control">
 
-                <input type="text" class="input" name="title" placeholder="Title" id="">
+                <input type="text" class="input" name="title" placeholder="Title" id="" value="{{ $project -> title}}">
 
             </div>
 
@@ -26,7 +28,7 @@
 
             <div class="control">
 
-                <textarea name="" class="textarea" id="" cols="30" rows="10"></textarea>
+                <textarea type="text" name="description" class="textarea" id="" cols="30" rows="10">{{ $project -> description}} </textarea>
 
             </div>
 
@@ -36,6 +38,17 @@
 
             <div class="control">
                 <button type="submit" class="button is-link">Update Project</button>
+            </div>
+
+        </div>
+    </form>
+
+    <form method="POST" action="/projects/{{ $project -> id }}">
+        {{ method_field('DELETE') }}
+        {{ csrf_field() }}
+        <div class="field">
+            <div class="control">
+                <button type="submit" class="button">Delete Project</button>
             </div>
 
         </div>

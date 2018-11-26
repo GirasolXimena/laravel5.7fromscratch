@@ -87,9 +87,19 @@ class ProjectsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
-        //
+       $project = Project::find($id);
+
+       $project->title = request('title');
+
+       $project->description = request('description');
+
+       $project->save();
+
+       return redirect('/projects');
+
+
     }
 
     /**
@@ -100,6 +110,11 @@ class ProjectsController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        Project::find($id)->delete();
+
+       return redirect('/projects');
+
     }
+
 }
